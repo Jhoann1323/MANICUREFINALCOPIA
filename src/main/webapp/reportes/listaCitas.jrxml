@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="510032da-1a1a-4290-8620-a58c9386363f">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT id_orden AS ID,  fecha_orden AS FECHA, razon_social AS 'NOMBRE PROVEEDOR', proveedor AS 'NIT PROVEEDOR', valor_total AS TOTAL FROM bd_glossnailsg.orden_pago]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="FECHA" class="java.sql.Date"/>
+	<field name="NOMBRE PROVEEDOR" class="java.lang.String"/>
+	<field name="NIT PROVEEDOR" class="java.lang.Integer"/>
+	<field name="TOTAL" class="java.lang.Float"/>
+	<background>
+		<band height="555">
+			<image>
+				<reportElement x="13" y="16" width="775" height="529" uuid="d66befe4-e039-4045-9989-5fc637fc18d6"/>
+				<imageExpression><![CDATA["C:\\Users\\dacue\\Documents\\NetBeansProjects\\GN17\\src\\main\\webapp\\reportes\\img.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="96" y="18" width="692" height="51" uuid="ffe30504-5f70-4ef4-b347-3b605e412fab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Monotype Corsiva" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[                          LISTADO ORDENES DE PAGO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="96" y="0" width="100" height="20" uuid="5c048280-50fc-43d6-baad-1fcf48b54e1f"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="0" width="100" height="20" uuid="edcfeb6e-42fd-4722-a448-b840d45b6743"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="0" width="100" height="20" uuid="189017af-5cfe-40ce-8dc5-2abee4ae9296"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="0" width="100" height="20" uuid="9fc6b70c-5009-4e82-8a50-3b0f50bc2278"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIT PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="601" y="0" width="100" height="20" uuid="b0f556de-d457-4afb-88ef-fcea660af1b5"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="96" y="8" width="100" height="20" uuid="6d2692de-ff94-4e8f-b57e-0d28c445f584"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="6" width="100" height="20" uuid="44e542a2-c9df-4d31-a659-ed02053876e7"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="6" width="100" height="20" uuid="fa72dc8f-bb49-4549-99df-7734602680cf"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE PROVEEDOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="6" width="100" height="20" uuid="7f4630ca-328e-4b0f-a49b-dd563fefbefd"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NIT PROVEEDOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="6" width="100" height="20" uuid="ec9a4131-4cd7-4c50-86d7-4814c4e88cd6"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
