@@ -54,7 +54,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
         return null;
     }
-
+     @Override
+    public List<String> leerCorreosAdmin() {
+        Query q = em.createNativeQuery("SELECT correo FROM usuario where rol_id_rol = 3");
+        
+        List<Usuario> listado = q.getResultList();
+        
+        if(!listado.isEmpty()){
+            return q.getResultList();
+        }
+        return null;
+    }
     
     
 }

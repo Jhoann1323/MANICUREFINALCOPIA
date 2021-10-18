@@ -51,8 +51,9 @@ public class PqrsMailRespuesta {
                     + "<br/>"
                     + "<h1> Hola, "+ nombre + " " + apellido + " </h1>"
                     + "Hemos leido y tenido muy en cuenta tu petición"
-                    + "<br/> En consecuencia, hemos respondido lo siguiente " + respuestaAdmin 
+                    + "<br/> En consecuencia, hemos respondido lo siguiente<br/>  " + respuestaAdmin 
                     + "<br/>"
+                            
                     + "Muchas gracias por tomarnos en cuenta "
                     + "<br/>"
                     + "ATT: El equipo de Glosshnails !Te esperamos en tu proxima visita¡"

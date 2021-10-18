@@ -113,19 +113,19 @@
                                     <div class="card-body table-center-width table-responsive" style="height:50% ">
 
                                         <p:growl id="msn" life="3000"/>
-                                        <h:form id="formregistrar">
-
+                                        <h:form >
+                                           
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Nombre" for="nombre" />
                                             <br/>
-                                            <h:inputText class="form-control" id="nombre" value="#{pqrsSesion.pqr.nombreCliente}" html5:placeholder="Nombre del Cliente" />
+                                            <h:inputText class="form-control" id="nombre" value="#{pqrsSesion.pqrs.nombreCliente}" html5:placeholder="Nombre del Cliente" />
                                             <br/>
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Apellidos:" for="apellidos" />
                                             <br/>
-                                            <h:inputText class="form-control" id="apellidos" value="#{pqrsSesion.pqr.apellidoCliente}" html5:placeholder="Apellidos del Cliente" />
+                                            <h:inputText class="form-control" id="apellidos" value="#{pqrsSesion.pqrs.apellidoCliente}" html5:placeholder="Apellidos del Cliente" />
                                             <br/>
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Correo:" for="correo" />
                                             <br/>
-                                            <h:inputText class="form-control" id="correo" value="#{pqrsSesion.pqr.correo}" html5:placeholder="Correo" />
+                                            <h:inputText class="form-control" id="correo" value="#{pqrsSesion.pqrs.correo}" html5:placeholder="Correo" />
                                             <br/>
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Tipo Pqrs:" for="tipoPqrs" />
                                             <h:selectOneMenu class="form-control" id="tipoPqrs" value="#{pqrsSesion.tipopqrs.descripcion}" required="true">
@@ -134,11 +134,11 @@
                                             <br/>
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Descripcion:" for="descripcion" />
                                             <br/>
-                                            <h:inputText class="form-control" id="descripcion" value="#{pqrsSesion.pqr.comentarioCliente}" html5:placeholder="Por favor redacte el Pqrs (no mas de 300 caracteres)" />
+                                            <h:inputText class="form-control" id="descripcion" value="#{pqrsSesion.pqrs.comentarioCliente}" html5:placeholder="Por favor redacte el Pqrs (no mas de 300 caracteres)" />
                                             <br/>
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Fecha del acontecimiento:" for="fechaSolicitud" />
                                             <br/>
-                                            <p:calendar id="fechaSolicitud" value="#{pqrsSesion.pqr.fechaRegistro}" pattern="MM/dd/yyyy HH:mm:ss"  html5:placeholder="MM/dd/yyyy HH:mm:ss" />
+                                            <p:calendar id="fechaSolicitud" value="#{pqrsSesion.pqrs.fechaRegistro}" pattern="MM/dd/yyyy HH:mm:ss"  html5:placeholder="MM/dd/yyyy HH:mm:ss" />
                                             <br/>
                                             <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
                                                 <h:outputText value="Datetime:"/>
@@ -150,7 +150,7 @@
                                               <br />
                                             <h:outputLabel class="card-text font-weight-bold text-black" value="Calificacion:" for="cali" />
                                             <br/>
-                                            <h:inputText class="form-control" id="cali" value="#{pqrsSesion.pqr.calificacion}" html5:placeholder="Dejanos una calificación" />
+                                            <h:inputText class="form-control" id="cali" value="#{pqrsSesion.pqrs.calificacion}" html5:placeholder="Dejanos una calificación" />
                                             <br/>
                                             <br />
                                             <h:commandLink class="btn btn-success btn-lg btn-block text-black rounded-pill" action="#{pqrsSesion.registrarPqrs()}" value="Registrar" />

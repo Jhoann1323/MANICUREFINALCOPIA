@@ -6,104 +6,88 @@ package controlador;
 
 import ejb.PqrsFacadeLocal;
 import ejb.TipopqrsFacadeLocal;
+import ejb.UsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Pqrs;
 import modelo.Tipopqrs;
+import utilidades.PqrsMailRespuesta;
+import utilidades.envioCorreoAdministrador;
 // import utilidades.PqrsMailRespuesta;
 
 //import utilidades.PqrsNotificacionAdministrador; 
-
 /**
  *
- * @author maye 
+ * @author maye
  */
-@Named(value="pqrsSesion")
+@Named(value = "pqrsSesion")
 @SessionScoped
 public class PqrsSesion implements Serializable {
-    
-    
+
     @EJB
-    private PqrsFacadeLocal  pqrsFacadeLocal ;
-    
-    //estructura para las llaves foraneas
+    private PqrsFacadeLocal pqrsFacadeLocal;
     
     @EJB 
-    private TipopqrsFacadeLocal tipopqrsFacadeLocal ; 
-    private Pqrs pqrs ; 
-   
-    
-    //inyeccion de dependecias (llaves foraneas ) 
-    @Inject 
-    private Tipopqrs tipopqrs ;
-   
-    
-    
-    private List<Pqrs> pqrss ; 
-    
+    private UsuarioFacadeLocal usuarioFacadeLocal ;
 
-    
-    
+    //estructura para las llaves foraneas
+    @EJB
+    private TipopqrsFacadeLocal tipopqrsFacadeLocal;
+    private Pqrs pqrs;
+
+    //inyeccion de dependecias (llaves foraneas ) 
+    @Inject
+    private Tipopqrs tipopqrs;
+
+    private List<Pqrs> pqrss;
+
     //Estructura para listas de llaves foraneas (inyeccion de dependencias)
     private List<Tipopqrs> tipopqrss; 
-    
-  
-    
-    
-    private Pqrs pqr  ; 
-    private Pqrs pqrtemporal = new Pqrs () ; 
-    
-    
-    
-    @PostConstruct 
-    
-    public void init(){
-        
-        
-         pqrs = new Pqrs() ; 
+    private List<String> correos; 
+
+    private Pqrs pqr;
+    private Pqrs pqrtemporal = new Pqrs();
+
+    @PostConstruct
+
+    public void init() {
+
+        pqrs = new Pqrs();
         //estructura para renderizado llaves foraneas 
-        tipopqrss=tipopqrsFacadeLocal.findAll();
-        
-        pqrss=pqrsFacadeLocal.findAll();
-    
-        
-        
-         
+        tipopqrss = tipopqrsFacadeLocal.findAll();
+
+        pqrss = pqrsFacadeLocal.findAll();
+
     }
-    
-    public void registrarPqrs(){
-        
-        try {
-            
-            pqr.setTipoPqrs(tipopqrs);
-         
-            pqrsFacadeLocal.create(pqr) ;
-            
-            tipopqrs = new Tipopqrs() ; 
-          
-            pqr = new Pqrs() ; 
-            pqrss=pqrsFacadeLocal.findAll();
-            
-            
-                        
-            
-            
-         } catch (Exception e) {
+
+    public void registrarPqrs() {
+
+        if (pqrsFacadeLocal.registrarPqrs(pqrs, tipopqrs)) {
+            tipopqrs = new Tipopqrs();
+
+            pqrs = new Pqrs();
+            pqrss = pqrsFacadeLocal.findAll();
+        } else {
         }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "error", "error"
+            ));
     }
-    
-    public void guardarTemporal(Pqrs t){
-        
+
+    public void guardarTemporal(Pqrs t) {
+
         pqrtemporal = t;
-        
+
     }
-    
-  /*  
+
+    /*  
     public void avisarEmailCliente(Pqrs p){
         try {
             (p.getIdCliente().toString());
@@ -119,27 +103,49 @@ public class PqrsSesion implements Serializable {
         
         
     }
-    */
-    public void editarPqrs () {
-        
+     */
+    public void editarPqrs() {
+
+        if (pqrsFacadeLocal.actualizarPqrs(pqrtemporal)) {
+
+            PqrsMailRespuesta.correoPqrs(
+                    pqrtemporal.getNombreCliente(),
+                    pqrtemporal.getApellidoCliente(),
+                    pqrtemporal.getCorreo(),
+                    pqrtemporal.getFechaRegistro(),
+                    pqrtemporal.getComentarioAdmin()
+            );
+            pqrss = pqrsFacadeLocal.findAll();
+            pqrtemporal = new Pqrs();
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "error", "error"
+            ));
+        }
+
+    }
+    
+    public void avisoPqrs(){
         try {
-            pqrtemporal.setTipoPqrs(tipopqrs);
-        
-            pqrsFacadeLocal.edit(pqrtemporal);
             
-            tipopqrs = new Tipopqrs() ; 
-         
-            pqrtemporal= new Pqrs(); 
-            pqrss=pqrsFacadeLocal.findAll();
+            correos = usuarioFacadeLocal.leerCorreosAdmin();
+
+            if (correos != null) {
+                envioCorreoAdministrador.recuperarAdministrador(correos); ;
+            } else {
+            }
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Fallo al enviar", "Fallo al enviar"));
         }
     }
-    public void eliminarPqrs (Pqrs t){
-        
+    
+   
+    public void eliminarPqrs(Pqrs t) {
+
         try {
             pqrsFacadeLocal.remove(t);
-            pqrss=pqrsFacadeLocal.findAll(); 
-            
+            pqrss = pqrsFacadeLocal.findAll();
+
         } catch (Exception e) {
         }
     }
@@ -192,7 +198,12 @@ public class PqrsSesion implements Serializable {
         this.pqrtemporal = pqrtemporal;
     }
 
-  
-    
-    
+    public List<String> getCorreos() {
+        return correos;
+    }
+
+    public void setCorreos(List<String> correos) {
+        this.correos = correos;
+    }
+
 }

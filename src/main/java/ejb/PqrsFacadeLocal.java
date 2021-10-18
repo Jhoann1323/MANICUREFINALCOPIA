@@ -7,6 +7,7 @@ package ejb;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Pqrs;
+import modelo.Tipopqrs;
 
 /**
  *
@@ -28,5 +29,11 @@ public interface PqrsFacadeLocal {
     List<Pqrs> findRange(int[] range);
 
     int count();
+
+    public boolean actualizarPqrs(Pqrs pIn);
+
+    //public boolean registrarPqrs(Pqrs pIn, int fktipo);
+
+    public boolean registrarPqrs(Pqrs pIn, Tipopqrs fktipo);
     
 }

@@ -33,5 +33,7 @@ public interface UsuarioFacadeLocal {
     Usuario recuperarClave(String correoIn);
   
     public Usuario encontrarUsuarioCorreo(String correo);
+
+    public List<String> leerCorreosAdmin();
     
 }
