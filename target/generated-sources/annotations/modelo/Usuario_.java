@@ -10,7 +10,7 @@ import modelo.TipoDireccion;
 import modelo.TipoIdentificacion;
 import modelo.TipoTelefono;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-10-17T21:14:53")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-10-19T06:10:15")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 

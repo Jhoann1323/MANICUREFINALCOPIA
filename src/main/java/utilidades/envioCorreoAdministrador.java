@@ -70,7 +70,7 @@ public abstract class envioCorreoAdministrador {
             content += "<br/>";
             content += "<h2> Hola administrador de Gloshnails G :D, Un nuevo usuario ha registrado un PQRS en la plataforma!</h2>";
             content += "<br/>";content += "<br/>";
-            content += "Por favor ingresa a responder";
+            content += "Por favor ingresa para responder";
             content += "<br/>";
             content += "\n";
             content += "</body>\n</html>";

@@ -20,6 +20,7 @@ import modelo.Pqrs;
 import modelo.Tipopqrs;
 import utilidades.PqrsMailRespuesta;
 import utilidades.envioCorreoAdministrador;
+
 // import utilidades.PqrsMailRespuesta;
 
 //import utilidades.PqrsNotificacionAdministrador; 
@@ -51,7 +52,7 @@ public class PqrsSesion implements Serializable {
     //Estructura para listas de llaves foraneas (inyeccion de dependencias)
     private List<Tipopqrs> tipopqrss; 
     private List<String> correos; 
-
+     pqrs = new Pqrs();
     private Pqrs pqr;
     private Pqrs pqrtemporal = new Pqrs();
 
@@ -59,7 +60,7 @@ public class PqrsSesion implements Serializable {
 
     public void init() {
 
-        pqrs = new Pqrs();
+      
         //estructura para renderizado llaves foraneas 
         tipopqrss = tipopqrsFacadeLocal.findAll();
 
@@ -81,7 +82,7 @@ public class PqrsSesion implements Serializable {
             ));
     }
 
-    public void guardarTemporal(Pqrs t) {
+    lic void guardarTemporal(Pqrs t) {
 
         pqrtemporal = t;
 
@@ -140,6 +141,67 @@ public class PqrsSesion implements Serializable {
     }
     
    
+/*
+ public void generarArchivo(String tipoArchivo) throws JRException, IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext context = facesContext.getExternalContext();
+        HttpServletResponse response = (HttpServletResponse) context.getResponse();
+        File jasper = new File(context.getRealPath("/reportes/TipoPqrsreporte."));
+        try {
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), new HashMap(), dataSource.getConnection());
+            switch (tipoArchivo) {
+                case "pdf":
+                    response.setContentType("application/pdf");
+                    response.addHeader("Content-disposition", "attachment; filename=Lista reportes tipo Reclamo.pdf");
+                    OutputStream os = response.getOutputStream();
+                    JasperExportManager.exportReportToPdfStream(jp, os);
+                    os.flush();
+                    os.close();
+                    break;
+
+                case "xlsx":
+                    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                    response.addHeader("Content-disposition", "attachment; filename=Lista reportes tipo Reclamo.xlsx");
+
+                    JRXlsxExporter exporter = new JRXlsxExporter(); // initialize exporter 
+                    exporter.setExporterInput(new SimpleExporterInput(jp)); // set compiled report as input
+                    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+
+                    SimpleXlsxReportConfiguration configuration = new SimpleXlsxReportConfiguration();
+                    configuration.setOnePagePerSheet(true); // setup configuration
+                    configuration.setDetectCellType(true);
+                    configuration.setSheetNames(new String[]{"reportes"});
+                    exporter.setConfiguration(configuration); // set configuration    
+                    exporter.exportReport();
+                    break;
+
+                case "docx":
+                    response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+                    response.addHeader("Content-disposition", "attachment; filename=Lista reportes tipo Reclamo.docx");
+
+                    JRDocxExporter exporterDoc = new JRDocxExporter(); // initialize exporter 
+                    exporterDoc.setExporterInput(new SimpleExporterInput(jp)); // set compiled report as input
+                    exporterDoc.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+
+                    SimpleDocxExporterConfiguration configurationDoc = new SimpleDocxExporterConfiguration();
+                    configurationDoc.setMetadataAuthor("GlossNailsG."); // setup configuration
+                    configurationDoc.setMetadataTitle("Reporte de pqrs");
+                    configurationDoc.setMetadataSubject("Listado de pqrs");
+
+                    exporterDoc.setConfiguration(configurationDoc); // set configuration    
+                    exporterDoc.exportReport();
+                    break;
+
+                default:
+                    System.err.println(" No se encontro este caso :: CategoriaView::generarArchivo");
+                    break;
+
+            }
+            facesContext.responseComplete();
+
+}
+}
+*/
     public void eliminarPqrs(Pqrs t) {
 
         try {

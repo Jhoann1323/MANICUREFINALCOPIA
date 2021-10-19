@@ -112,6 +112,16 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
+                                 <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reporte de pqrs tipo reclamo </h5>
+                                    <h:form>
+                                        <h:commandButton action="#{PqrsSesion.generarArchivo('pdf')}"  class=" ml-2 btn btn-sm btn-dark" value=".pdf"></h:commandButton>
+                                        <h:commandButton action="#{PqrsSesion.generarArchivo('xlsx')}"  class=" ml-2 btn btn-sm btn-dark" value=".xlsx"></h:commandButton>
+                                        <h:commandButton action="#{PqrsSesion.generarArchivo('docx')}"  class=" ml-2 btn btn-sm btn-dark" value=".docx"></h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
                                 <div class="card strpied-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Pqrs</h4>

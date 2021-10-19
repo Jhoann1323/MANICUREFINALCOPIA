@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e784f39a-dca0-46e6-9342-4f21c5a8cfd8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT  `idpqrs`, `nombreCliente`AS Nombre, `correo` , `comentarioCliente` as Descripción , `fechaRegistro` as fecha, `tipo_pqrs` as "Tipo pqrs", `calificacion` FROM pqrs 
+where tipo_pqrs = 1 ;]]>
+	</queryString>
+	<field name="idpqrs" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Descripción" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="Tipo pqrs" class="java.lang.Integer"/>
+	<field name="calificacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="12" y="7" width="778" height="548" uuid="3e5d6e85-5aca-479e-82e4-0fa700406f92"/>
+				<imageExpression><![CDATA["D:\\ultima version glosssss\\GN17\\src\\main\\webapp\\reportes\\img.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="17" width="692" height="51" uuid="52d05325-90a7-434f-8994-31581dabae0a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Monotype Corsiva" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Pqrs de tipo Reclamo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="13" width="48" height="20" forecolor="#660066" backcolor="#000000" uuid="5af0d745-451a-4d1f-bc48-4da166be9afd"/>
+				<text><![CDATA[idpqrs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="13" width="100" height="20" forecolor="#660066" backcolor="#000000" uuid="146ded1e-3738-424f-80f6-0aaea36653d3"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="13" width="100" height="20" forecolor="#660066" backcolor="#000000" uuid="abcfa7b6-553f-41de-8ba3-b7b5ad4f0993"/>
+				<text><![CDATA[correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="13" width="196" height="20" forecolor="#660066" backcolor="#000000" uuid="49eadec2-e463-458f-8ce1-c30de0e1ac60"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="13" width="100" height="20" forecolor="#660066" backcolor="#000000" uuid="afe1caf4-03a5-42ed-9320-f98ce958107d"/>
+				<text><![CDATA[fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="613" y="13" width="54" height="20" forecolor="#660066" backcolor="#000000" uuid="c86ae4ce-d386-402f-b201-f6d40d258ff7"/>
+				<text><![CDATA[Tipo pqrs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="667" y="13" width="100" height="20" forecolor="#660066" backcolor="#000000" uuid="cf29fbd5-1761-43c1-aeb7-fa03aa413406"/>
+				<text><![CDATA[calificacion]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="19" width="48" height="20" forecolor="#000000" backcolor="#000000" uuid="df3294c3-0dda-4d4a-a51e-d3d2f9f708f9"/>
+				<textFieldExpression><![CDATA[$F{idpqrs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="19" width="100" height="20" forecolor="#FF0000" backcolor="#000000" uuid="0f0fc898-2967-46d7-926c-600372a8f96b"/>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="19" width="100" height="20" forecolor="#FF0000" backcolor="#000000" uuid="19fc5278-6293-4a4a-86eb-24dbc4d9787c"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="17" width="196" height="20" forecolor="#FF0000" backcolor="#000000" uuid="0f76cbde-6dc8-4443-935f-e9bd4d3ffd62"/>
+				<textFieldExpression><![CDATA[$F{Descripción}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="524" y="19" width="100" height="20" forecolor="#FF0000" backcolor="#000000" uuid="eb612163-ceac-4d41-b811-7622397da45f"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="624" y="16" width="54" height="20" forecolor="#FF0000" backcolor="#000000" uuid="f5d63f84-ce66-4453-97d5-a5e7ac077e16"/>
+				<textFieldExpression><![CDATA[$F{Tipo pqrs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="689" y="17" width="100" height="20" forecolor="#FF0000" backcolor="#000000" uuid="e0dfdf2b-0a0b-444c-b641-f575f998efc0"/>
+				<textFieldExpression><![CDATA[$F{calificacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
